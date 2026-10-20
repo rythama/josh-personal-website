@@ -318,6 +318,25 @@ section { padding: clamp(80px, 12vw, 160px) var(--gutter) 0; }
 .fr-arrow { font-size: 22px; transition: transform 0.4s var(--ease), color 0.3s; justify-self: end; }
 .fr-thumb { display: none; }
 
+/* Wide screens: number · thumbnail · title · stacked details · arrow */
+@media (min-width: 901px) {
+  .film-row {
+    grid-template-columns: 40px clamp(150px, 15vw, 240px) minmax(0, 1fr) clamp(170px, 16vw, 230px) 32px;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    column-gap: clamp(16px, 2vw, 32px);
+    row-gap: 4px;
+    padding: 18px 0;
+  }
+  .fr-num { grid-column: 1; grid-row: 1 / span 3; }
+  .fr-thumb { display: block; grid-column: 2; grid-row: 1 / span 3; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .fr-title { grid-column: 3; grid-row: 1 / span 3; }
+  .fr-role { grid-column: 4; grid-row: 1; align-self: end; }
+  .fr-kind { grid-column: 4; grid-row: 2; }
+  .fr-year { grid-column: 4; grid-row: 3; align-self: start; }
+  .fr-arrow { grid-column: 5; grid-row: 1 / span 3; }
+}
+
 /* Hover: thumbnail brightens, title goes red, arrow tips up. Nothing shifts. */
 .fr-thumb { filter: brightness(0.82); transition: filter 0.35s; }
 @media (hover: hover) {
