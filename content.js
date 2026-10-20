@@ -20,7 +20,7 @@ window.SITE = {
   location: "Charlottesville, VA",
   timezone: "America/New_York", // drives the footer clock
   intro:
-    "Short films and photographs, mostly about people and the light they happen to be standing in.",
+    "Short films and photographs",
   email: "jparoongsup2456@gmail.com",
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/parrr.j/" },
