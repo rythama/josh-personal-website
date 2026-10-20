@@ -12,10 +12,6 @@
 // YouTube thumbnail for a video ID.
 const yt = (id) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
 
-// PLACEHOLDER image helper — delete once real images are in.
-const ph = (seed, w, h, bw = false) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}${bw ? "?grayscale" : ""}`;
-
 window.SITE = {
   firstName: "Joshua",
   lastName: "Paroongsup",
@@ -29,7 +25,6 @@ window.SITE = {
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/parrr.j/" },
     { label: "YouTube", url: "https://www.youtube.com/@parrrparr" },
-    { label: "Letterboxd", url: "https://letterboxd.com/" }, // PLACEHOLDER
   ],
 
   /* ---- FILMS ------------------------------------------------------------
@@ -138,49 +133,25 @@ window.SITE = {
   ],
 
   /* ---- PHOTOGRAPHS ------------------------------------------------------
-     Each series shows up as its own strip on the contact sheet.      */
+     Each series shows up as its own strip on the contact sheet.
+     Photos live in assets/photos/. Frames take each photo's own shape,
+     so portrait shots stay portrait.                                    */
   series: [
     {
-      title: "Salt", // PLACEHOLDER
-      year: 2025,
-      stock: "Colour 400",
-      note: "Coastal towns out of season.",
+      title: "Tri-X, Pushed", // rename any time
+      stock: "Tri-X 400 @ 1600",
+      description:
+        "35mm Medium Format Photography, 400 Tri-X Black and White Kodak Film pushed to 1600. Hand developed film then scanned and edited digitally for maximum contrast.",
+      // Captions are just descriptions of each frame for now: swap in real titles or places.
       photos: [
-        { src: ph("salt1", 1500, 1000), caption: "Pier, early", place: "Morro Bay" },
-        { src: ph("salt2", 1500, 1000), caption: "Lifeguard tower", place: "Morro Bay" },
-        { src: ph("salt3", 1500, 1000), caption: "Closed for winter", place: "Cayucos" },
-        { src: ph("salt4", 1500, 1000), caption: "Two swimmers", place: "Cayucos" },
-        { src: ph("salt5", 1500, 1000), caption: "Fog bank", place: "Pismo" },
-        { src: ph("salt6", 1500, 1000), caption: "Motel sign", place: "Pismo" },
-        { src: ph("salt7", 1500, 1000), caption: "Last light", place: "Avila" },
-      ],
-    },
-    {
-      title: "After Hours", // PLACEHOLDER
-      year: 2024,
-      stock: "B&W 3200",
-      note: "City nights, pushed two stops.",
-      photos: [
-        { src: ph("night1", 1500, 1000, true), caption: "Laundromat", place: "Echo Park" },
-        { src: ph("night2", 1500, 1000, true), caption: "Bus stop, 2am", place: "Koreatown" },
-        { src: ph("night3", 1500, 1000, true), caption: "Rooftop", place: "Downtown" },
-        { src: ph("night4", 1500, 1000, true), caption: "Taxi rank", place: "Downtown" },
-        { src: ph("night5", 1500, 1000, true), caption: "Neon, rain", place: "Silver Lake" },
-        { src: ph("night6", 1500, 1000, true), caption: "Waiting", place: "Union Station" },
-      ],
-    },
-    {
-      title: "Field Notes", // PLACEHOLDER
-      year: 2023,
-      stock: "Colour 200",
-      note: "Odds and ends from the road.",
-      photos: [
-        { src: ph("field1", 1500, 1000), caption: "Desert motel", place: "Joshua Tree" },
-        { src: ph("field2", 1500, 1000), caption: "Gas station", place: "Route 66" },
-        { src: ph("field3", 1500, 1000), caption: "Cattle crossing", place: "Nevada" },
-        { src: ph("field4", 1500, 1000), caption: "Overlook", place: "Utah" },
-        { src: ph("field5", 1500, 1000), caption: "Back seat", place: "Somewhere in Arizona" },
-        { src: ph("field6", 1500, 1000), caption: "Home", place: "Charlottesville" },
+        { src: "assets/photos/01-bar.jpg", caption: "Bar" },
+        { src: "assets/photos/02-cat.jpg", caption: "Cat in the doorway" },
+        { src: "assets/photos/03-branches.jpg", caption: "Branches" },
+        { src: "assets/photos/04-chimney.jpg", caption: "Chimney" },
+        { src: "assets/photos/05-patio.jpg", caption: "Patio at night" },
+        { src: "assets/photos/06-chimney-bird.jpg", caption: "Chimney and bird" },
+        { src: "assets/photos/07-jewelers.jpg", caption: "Jewelers" },
+        { src: "assets/photos/08-booth.jpg", caption: "Booth" },
       ],
     },
   ],

@@ -105,37 +105,9 @@
   updateNav();
 
   /* ------------------------------------------------------------------------
-     Leader countdown (once per session)
+     Hero entrance: start a frame after load so the reveal transitions run
      ------------------------------------------------------------------------ */
-  function runLeader() {
-    const leader = $(".leader");
-    let seen = false;
-    try { seen = sessionStorage.getItem("leader-seen") === "1"; } catch {}
-
-    const finish = () => {
-      leader.classList.add("done");
-      document.body.classList.remove("is-loading");
-      try { sessionStorage.setItem("leader-seen", "1"); } catch {}
-    };
-
-    if (seen || reduceMotion) {
-      leader.style.transition = "none";
-      // Let the hero still animate in on a later frame.
-      leader.classList.add("done");
-      requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove("is-loading")));
-      return;
-    }
-
-    const num = $(".leader-num");
-    let n = 3;
-    const timer = setInterval(() => {
-      n -= 1;
-      if (n > 0) num.textContent = n;
-      else { clearInterval(timer); finish(); }
-    }, 800);
-    leader.addEventListener("click", () => { clearInterval(timer); finish(); }, { once: true });
-  }
-  runLeader();
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove("is-loading")));
 
   /* ------------------------------------------------------------------------
      Hero viewfinder: slideshow + running timecode
@@ -236,7 +208,11 @@
             "aria-label": `${photo.caption}${photo.place ? `, ${photo.place}` : ""}`,
             onclick: () => openPhoto(idx),
           },
-          h("span", { class: "frame-clip" }, h("img", { src: photo.src, alt: photo.caption || "", loading: "lazy", draggable: "false" })),
+          h("span", { class: "frame-clip" }, h("img", {
+            src: photo.src, alt: photo.caption || "", loading: "lazy", draggable: "false",
+            // Let the frame take the photo's own shape (portraits stay portrait)
+            onload: (e) => (e.target.closest(".frame").style.aspectRatio = `${e.target.naturalWidth} / ${e.target.naturalHeight}`),
+          })),
           grease()
         ),
         h("span", { class: "edge bottom" }, `▸ ${n}`, h("b", {}, `${n}A`))
@@ -249,7 +225,8 @@
           h("h3", {}, series.title),
           h("span", { class: "series-meta" },
             [series.year, series.stock, `${pad(series.photos.length)} frames`].filter(Boolean).join("  ·  ")),
-          series.note && h("p", { class: "series-note" }, series.note)
+          series.note && h("p", { class: "series-note" }, series.note),
+          series.description && h("p", { class: "series-desc" }, series.description)
         ),
         h("div", { class: "strip" }, h("ol", {}, frames))
       )
@@ -351,7 +328,7 @@
     info.replaceChildren(
       h("h3", {}, p.caption || p.series.title),
       h("span", { class: "meta" }, [p.series.title, p.place, p.series.year].filter(Boolean).join("  ·  ")),
-      p.description ? h("p", {}, p.description) : ""
+      (p.description || p.series.description) ? h("p", {}, p.description || p.series.description) : ""
     );
     count.textContent = `${pad(i + 1)} / ${pad(allPhotos.length)}`;
   }

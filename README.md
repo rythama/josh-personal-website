@@ -13,7 +13,7 @@ Search for `PLACEHOLDER` to find what still needs replacing.
 
 ## Fonts
 Both are free Google Fonts that can be used for anything, paid work included, with no credit needed.
-- **Special Elite** for titles.
+- **Archivo** (extra condensed, extra bold) for titles.
 - **Courier Prime** for everything else.
 
 ## Running locally
