@@ -25,6 +25,7 @@ window.SITE = {
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/parrr.j/" },
     { label: "YouTube", url: "https://www.youtube.com/@parrrparr" },
+    { label: "TikTok", url: "https://www.tiktok.com/@jparr12" },
   ],
 
   /* ---- FILMS ------------------------------------------------------------
